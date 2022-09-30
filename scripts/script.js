@@ -1,85 +1,185 @@
-var counter = 0 
-var rps = ["rock","paper","scissors"] 
-var win = 0 
-var lost = 0 
-var draw = 0 
-var res = "" 
+var counter = 0
+var rps = ["rock","paper","scissors"]
+var win = 0
+var lost = 0
+var draw = 0
+var res = ""
 
-function comp_res(){ 
-    let index = Math.floor(Math.random()*3) 
-    return rps[index]; 
-} 
- 
-function winner_check(index){ 
-    let comp_choice = comp_res() 
-    let player_choice = rps[index]; 
-    
-    change_value("comp","Comp: "+comp_choice) 
-
-    if(comp_choice == player_choice){ 
-        res = "draw" 
-        draw++ 
-        change_value("draw","Draw: " +draw) 
-    } else if(comp_choice=="rock" && player_choice == "paper"){ 
-        res= "win" 
-        win++ 
-        change_value("win","Win: "+win) 
-    } else if(comp_choice=="rock" && player_choice == "scissors"){ 
-        res= "lost"
-        lost++ 
-        change_value("lost","Lost: "+lost) 
-    }else if(comp_choice=="paper" && player_choice == "rock"){ 
-        res= "lost" 
-        lost++ 
-        change_value("lost","Lost: "+lost) 
-    }else if(comp_choice=="paper" && player_choice == "scissors"){ 
-        res= "win" 
-        win++ 
-        change_value("win","Win: "+win) 
-    }else if(comp_choice=="scissors" && player_choice == "rock"){ 
-        res= "win" 
-        win++ 
-        change_value("win","Win: "+win) 
-    }else if(comp_choice=="scissors" && player_choice == "paper"){ 
-        res= "lost"
-        lost++
-        change_value("lost","Lost: "+lost) 
-} 
-
-    document.getElementById("rock").disabled = true; 
-    document.getElementById("paper").disabled = true; 
-    document.getElementById("scissors").disabled = true; 
- 
-    return change_value("demo","Result: "+res) 
-} 
-
-function new_game(){ 
-    document.getElementById("rock").disabled = false; 
-    document.getElementById("paper").disabled = false; 
-    document.getElementById("scissors").disabled = false; 
-} 
- 
-function change_value(id,value){ 
-    return document.getElementById(id).innerHTML = value; 
-} 
-
-function reset(){ 
-    win = 0 
-    lost = 0 
-    draw = 0 
-    change_value("lost","Lost: "+lost) 
-    change_value("win","Win: "+win) 
-    change_value("draw","Draw: "+draw) 
-    change_value("demo","Result: ") 
-    change_value("comp","Comp: ") 
-} 
-
-function light(){ 
-    document.body.style.backgroundColor = "white"; 
-    document.body.style.color = "black"; 
-} 
-
-function dark(){ 
-    document.body.style.backgroundColor = "black"; 
-    document.body.style.color = "white"; 
+function comp_res(){
+    let index = Math.floor(Math.random()*3)
+    return rps[index];
 }
+
+function winner_check(index){
+    let comp_choice = comp_res()
+    let player_choice = rps[index];
+
+    change_value("comp",comp_choice)
+
+    if(comp_choice == player_choice){
+        res = "Draw!"
+        draw++
+        change_value("draw",draw)
+    } else if(comp_choice=="rock" && player_choice == "paper"){
+        res= "Win!"
+        win++
+        change_value("win",win)
+    } else if(comp_choice=="rock" && player_choice == "scissors"){
+        res= "Lost!"
+        lost++
+        change_value("lost",lost)
+    }else if(comp_choice=="paper" && player_choice == "rock"){
+        res= "Lost!"
+        lost++
+        change_value("lost",lost)
+    }else if(comp_choice=="paper" && player_choice == "scissors"){
+        res= "Win!"
+        win++
+        change_value("win",win)
+    }else if(comp_choice=="scissors" && player_choice == "rock"){
+        res= "Win!"
+        win++
+        change_value("win",win)
+    }else if(comp_choice=="scissors" && player_choice == "paper"){
+        res= "Lost!"
+        lost++
+        change_value("lost",lost)
+    }
+
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+
+    change_value("demo",res);
+    document.getElementById("result_div").classList.remove("hidden");
+    document.getElementById("result_div").classList.add("res_div");
+
+    document.getElementById("full_div").classList.remove("full");
+    document.getElementById("full_div").classList.add("blur");
+
+    document.getElementById("mainframe").classList.add("blur_main");
+}
+
+function new_game(){
+    document.getElementById("rock").disabled = false;
+    document.getElementById("paper").disabled = false;
+    document.getElementById("scissors").disabled = false;
+    document.getElementById("result_div").classList.remove("res_div");
+    document.getElementById("result_div").classList.add("hidden");
+    document.getElementById("full_div").classList.remove("blur");
+    document.getElementById("full_div").classList.add("full");
+    document.getElementById("mainframe").classList.remove("blur_main");
+}
+
+function change_value(id,value){
+    return document.getElementById(id).innerHTML = value;
+}
+
+function reset(){
+    win = 0
+    lost = 0
+    draw = 0
+    change_value("lost",lost)
+    change_value("win",win)
+    change_value("draw",draw)
+}
+
+function create_btn(text,id_name,func,appendto){
+    btn = document.createElement("button");
+    btn.innerHTML = text;
+    btn.id = id_name;
+    btn.type = "button";
+    btn.addEventListener("click", function(){
+        func();
+    })
+    appendto.appendChild(btn);
+}
+
+function create_rps_button(text,id_name,param,appendto){
+    btn_rps = document.createElement("button");
+    btn_rps.innerHTML = text;
+    btn_rps.id = id_name;
+    btn_rps.type = "button";
+    btn_rps.addEventListener("click", function(){
+        winner_check(param);
+    })
+    appendto.appendChild(btn_rps);
+}
+
+function create_phragraph(text,id_name,appendto){
+    para = document.createElement("p");
+    para.innerHTML = text;
+    para.id = id_name;
+    appendto.appendChild(para);
+}
+
+function create_div_with_scores(sc_id,title,score_id,appendto){
+    score_div = document.createElement("div");
+    score_div.id = sc_id;
+
+    title_text = document.createElement("p");
+    title_text.innerHTML = title;
+    score_div.appendChild(title_text);
+
+    score_text = document.createElement("p");
+    score_text.innerHTML = "0";
+    score_text.id = score_id;
+    score_div.appendChild(score_text);
+
+    appendto.appendChild(score_div);
+}
+
+function create_div(){
+    res_div = document.createElement("div");
+    res_div.classList.add("hidden");
+    res_div.id = "result_div";
+
+    create_phragraph("","demo",res_div);
+
+    create_phragraph("","comp",res_div);
+
+    line_res = document.createElement("hr");
+    res_div.appendChild(line_res);
+
+    new_game_btn = document.createElement("button");
+    new_game_btn.innerHTML = "New Game";
+    new_game_btn.type = "button";
+    new_game_btn.id = "new_game";
+    new_game_btn.addEventListener("click", function(){
+        new_game();
+    })
+    res_div.appendChild(new_game_btn);
+    document.body.appendChild(res_div);
+}
+
+function main(){
+    mainframe = document.createElement("div");
+    mainframe.id = "mainframe";
+    document.body.appendChild(mainframe);
+
+    header = document.createElement("h1");
+    header.innerHTML = "RPS Game";
+    mainframe.appendChild(header)
+
+    full_div = document.createElement("div");
+    full_div.classList.add("full");
+    full_div.id = "full_div";
+    mainframe.appendChild(full_div);
+
+    create_rps_button("Rock","rock",0,full_div);
+    create_rps_button("Paper","paper",1,full_div);
+    create_rps_button("Scissors","scissors",2,full_div);
+
+    create_div_with_scores("win_div","Wins:","win",mainframe);
+    create_div_with_scores("lost_div","Losts:","lost",mainframe);
+    create_div_with_scores("draw_div","Draws:","draw",mainframe);
+
+    create_btn("Reset","reset",reset,mainframe);
+
+    create_div();
+}
+
+window.addEventListener('DOMContentLoaded',() => {
+    main()
+})
+
