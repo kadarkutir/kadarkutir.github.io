@@ -14,7 +14,15 @@ function winner_check(index){
     let comp_choice = comp_res()
     let player_choice = rps[index];
 
-    change_value("comp",comp_choice)
+    if(comp_choice == "rock"){
+        document.getElementById('comp').classList.add("rock");
+    } else if(comp_choice == "paper"){
+        document.getElementById('comp').classList.add("paper");
+    } else if(comp_choice == "scissors"){
+        document.getElementById("comp").classList.add("scissors");
+    }
+
+    
 
     if(comp_choice == player_choice){
         res = "Draw!"
@@ -46,29 +54,22 @@ function winner_check(index){
         change_value("lost",lost)
     }
 
-    document.getElementById("rock").disabled = true;
-    document.getElementById("paper").disabled = true;
-    document.getElementById("scissors").disabled = true;
-
-    change_value("demo",res);
+    change_value("results",res);
     document.getElementById("result_div").classList.remove("hidden");
     document.getElementById("result_div").classList.add("res_div");
-
-    document.getElementById("full_div").classList.remove("full");
-    document.getElementById("full_div").classList.add("blur");
 
     document.getElementById("mainframe").classList.add("blur_main");
 }
 
 function new_game(){
-    document.getElementById("rock").disabled = false;
-    document.getElementById("paper").disabled = false;
-    document.getElementById("scissors").disabled = false;
     document.getElementById("result_div").classList.remove("res_div");
     document.getElementById("result_div").classList.add("hidden");
-    document.getElementById("full_div").classList.remove("blur");
-    document.getElementById("full_div").classList.add("full");
+
     document.getElementById("mainframe").classList.remove("blur_main");
+
+    document.getElementById("comp").classList.remove("paper");
+    document.getElementById("comp").classList.remove("scissors");
+    document.getElementById("comp").classList.remove("rock");
 }
 
 function change_value(id,value){
@@ -95,24 +96,6 @@ function create_btn(text,id_name,func,appendto){
     appendto.appendChild(btn);
 }
 
-function create_rps_button(text,id_name,param,appendto){
-    btn_rps = document.createElement("button");
-    btn_rps.innerHTML = text;
-    btn_rps.id = id_name;
-    btn_rps.type = "button";
-    btn_rps.addEventListener("click", function(){
-        winner_check(param);
-    })
-    appendto.appendChild(btn_rps);
-}
-
-function create_phragraph(text,id_name,appendto){
-    para = document.createElement("p");
-    para.innerHTML = text;
-    para.id = id_name;
-    appendto.appendChild(para);
-}
-
 function create_div_with_scores(sc_id,title,score_id,appendto){
     score_div = document.createElement("div");
     score_div.id = sc_id;
@@ -129,14 +112,31 @@ function create_div_with_scores(sc_id,title,score_id,appendto){
     appendto.appendChild(score_div);
 }
 
+function create_image(source,id_image,param,appendto){
+    image = document.createElement('img')
+    image.src = source;
+    image.id = id_image;
+    image.addEventListener('click',function(){
+        winner_check(param);
+    })
+    appendto.appendChild(image);
+}
+
 function create_div(){
     res_div = document.createElement("div");
     res_div.classList.add("hidden");
     res_div.id = "result_div";
 
-    create_phragraph("","demo",res_div);
+    result = document.createElement("p");
+    result.innerHTML = "";
+    result.id = "results";
+    res_div.appendChild(result);
 
-    create_phragraph("","comp",res_div);
+    comp_div = document.createElement('div');
+    comp_div.id = 'comp';
+    res_div.appendChild(comp_div);
+
+    //create_phragraph("","comp",res_div);
 
     line_res = document.createElement("hr");
     res_div.appendChild(line_res);
@@ -158,17 +158,12 @@ function main(){
     document.body.appendChild(mainframe);
 
     header = document.createElement("h1");
-    header.innerHTML = "RPS Game";
+    header.innerHTML = "Rock Paper Scissors Game";
     mainframe.appendChild(header)
 
-    full_div = document.createElement("div");
-    full_div.classList.add("full");
-    full_div.id = "full_div";
-    mainframe.appendChild(full_div);
-
-    create_rps_button("Rock","rock",0,full_div);
-    create_rps_button("Paper","paper",1,full_div);
-    create_rps_button("Scissors","scissors",2,full_div);
+    create_image('images/rock.png','rock_image',0,mainframe);
+    create_image('images/paper.png','paper_image',1,mainframe);
+    create_image('images/scissors.png','scissors_image',2,mainframe);
 
     create_div_with_scores("win_div","Wins:","win",mainframe);
     create_div_with_scores("lost_div","Losts:","lost",mainframe);
