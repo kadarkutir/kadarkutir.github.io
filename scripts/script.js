@@ -136,10 +136,8 @@ function create_div(){
     comp_div.id = 'comp';
     res_div.appendChild(comp_div);
 
-    //create_phragraph("","comp",res_div);
-
-    line_res = document.createElement("hr");
-    res_div.appendChild(line_res);
+    enter = document.createElement('br');
+    res_div.appendChild(enter);
 
     new_game_btn = document.createElement("button");
     new_game_btn.innerHTML = "New Game";
