@@ -148,7 +148,11 @@ body{
     text-align: center;
 }
 
-@media only screen and (max-width:600px){
+@media only screen and (min-width:900px){
+
+}
+
+@media only screen and (min-width:300px){
     #mainframe{
         width: 100%;
         height: 100%;
@@ -232,19 +236,28 @@ body{
         top: 70%;
     }
 
+    #results{
+        display: inline-block;
+        margin-top: -5px;
+        margin-bottom: 2px;
+    }
+
+    #comp{
+        margin-bottom: -5px;
+    }
+
     .res_div{
         width: 50%;
         height: 60%;
         font-size: 50px;
-    }
-
-    #demo{
-        margin-top: 0px;
+        padding-top: 0px;
     }
 
     #new_game{
         width: 300px;
-        height: 150px;
+        height: 160px;
         font-size: 70px;
+        display: inline-block;
+        margin-top: -5px;
     }
 }
