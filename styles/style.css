@@ -6,6 +6,7 @@ body{
 #mainframe{
     width: 100%;
     height: 100%;
+    background-image: url(../images/background_image.jpg);
     background-color: black;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -29,6 +30,8 @@ body{
     right: 0;
     top: 0;
     bottom: 0;
+    width: 25%;
+    height: 60%;
     visibility: visible;
     transition: all .5s linear;
 }
@@ -43,6 +46,8 @@ body{
 
 #new_game{
     border-radius: 10px;
+    height: 10%;
+    width: 20%;
 }
 
 #reset{
@@ -53,6 +58,8 @@ body{
     top: 0;
     bottom: -90%;
     border-radius: 10px;
+    height: 50px;
+    width: 100px;
 }
 
 #win_div{
@@ -139,124 +146,4 @@ body{
     background-size: 90% 90%;
     background-repeat: no-repeat;
     text-align: center;
-}
-
-@media only screen and (min-width:1200px){
-    #mainframe{
-        background-image: url(../images/background_image.jpg);
-    }
-
-    .res_div{
-        width: 25%;
-        height: 60%;
-    }
-
-    #new_game{
-        height: 50px;
-        width: 100px;
-    }
-
-    #reset{
-        height: 50px;
-        width: 100px;
-    }
-}
-
-@media only screen and (max-width:600px){
-    #mainframe{
-        background-image: url(../images/mobile_background.jpg);
-    }
-
-    h1{
-        font-size: 80px;
-    }
-
-    #win_div{
-        border: 2px solid white;
-        background-color: green;
-        width: 300px;
-        height: 300px;
-        border-radius: 10px;
-        position: fixed;
-        left: 2%;
-        top: 10%;
-        font-size: 60px;
-    }
-
-    #lost_div{
-        border: 2px solid white;
-        background-color: red;
-        width: 300px;
-        height: 300px;
-        border-radius: 10px;
-        position: fixed;
-        left: 35%;
-        top: 10%;
-        font-size: 60px;
-    }
-    
-    #draw_div{
-        border: 2px solid white;
-        background-color: yellow;
-        width: 300px;
-        height: 300px;
-        border-radius: 10px;
-        position: fixed;
-        left: 68%;
-        top: 10%;
-        font-size: 60px;
-    }
-
-    #reset{
-        width: 300px;
-        height: 150px;
-        font-size: 60px;
-    }
-
-    #rock_image{
-        width: 350px;
-        height: 350px;
-        position: fixed;
-        left: 35%;
-    }
-
-    #paper_image{
-        width: 350px;
-        height: 350px;
-        position: fixed;
-        left: 35%;
-        top: 50%;
-    }
-
-    #scissors_image{
-        width: 350px;
-        height: 350px;
-        position: fixed;
-        left: 35%;
-        top: 70%;
-    }
-
-    #results{
-        display: inline-block;
-        margin-top: -5px;
-        margin-bottom: 2px;
-    }
-
-    #comp{
-        margin-bottom: -5px;
-    }
-
-    .res_div{
-        width: 50%;
-        height: 60%;
-        font-size: 50px;
-    }
-
-    #new_game{
-        width: 300px;
-        height: 160px;
-        font-size: 70px;
-        display: inline-block;
-        margin-top: -5px;
-    }
 }
