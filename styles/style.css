@@ -104,7 +104,7 @@ body{
 }
 
 #rock_image:hover{ 
-    transform: scale(1.1); 
+    transform: scale(1.2); 
 }
 
 #paper_image{
@@ -116,7 +116,7 @@ body{
 }
 
 #paper_image:hover{ 
-    transform: scale(1.1); 
+    transform: scale(1.2); 
 }
 
 #scissors_image{
@@ -128,7 +128,7 @@ body{
 }
 
 #scissors_image:hover{ 
-    transform: scale(1.1); 
+    transform: scale(1.2); 
 }
 
 #comp{
