@@ -96,11 +96,11 @@ body{
 }
 
 #rock_image{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     position: fixed;
     top:30%;
-    left: 20%;
+    left: 35%;
 }
 
 #rock_image:hover{ 
@@ -108,11 +108,11 @@ body{
 }
 
 #paper_image{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     position: fixed;
     top:30%;
-    left: 40%;
+    left: 46%;
 }
 
 #paper_image:hover{ 
@@ -120,11 +120,11 @@ body{
 }
 
 #scissors_image{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     position: fixed;
     top:30%;
-    left: 60%;
+    left: 57%;
 }
 
 #scissors_image:hover{ 
