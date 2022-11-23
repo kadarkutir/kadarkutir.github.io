@@ -127,18 +127,32 @@ function create_div(){
     res_div.classList.add("hidden");
     res_div.id = "result_div";
 
+    result_table = document.createElement("table")
+    result_table.classList.add("res_table")
+    
+    res_row = document.createElement("tr")
+    res_col = document.createElement("td")
     result = document.createElement("p");
     result.innerHTML = "";
     result.id = "results";
-    res_div.appendChild(result);
+    res_col.appendChild(result)
+    res_row.appendChild(res_col)
+    result_table.appendChild(res_row)
 
+
+    comp_row = document.createElement("tr")
+    comp_col = document.createElement("td")
     comp_div = document.createElement('div');
     comp_div.id = 'comp';
-    res_div.appendChild(comp_div);
+    comp_col.appendChild(comp_div)
+    comp_row.appendChild(comp_col)
+    result_table.appendChild(comp_row)
 
-    enter = document.createElement('br');
-    res_div.appendChild(enter);
+    // enter = document.createElement('br');
+    // res_div.appendChild(enter);
 
+    btn_row = document.createElement("tr")
+    btn_col = document.createElement("td")
     new_game_btn = document.createElement("button");
     new_game_btn.innerHTML = "New Game";
     new_game_btn.type = "button";
@@ -146,7 +160,10 @@ function create_div(){
     new_game_btn.addEventListener("click", function(){
         new_game();
     })
-    res_div.appendChild(new_game_btn);
+    btn_col.appendChild(new_game_btn)
+    btn_row.appendChild(btn_col)
+    result_table.appendChild(btn_row)
+    res_div.appendChild(result_table)
     document.body.appendChild(res_div);
 }
 
@@ -159,13 +176,43 @@ function main(){
     header.innerHTML = "Rock Paper Scissors Game";
     mainframe.appendChild(header)
 
-    create_image('images/rock.png','rock_image',0,mainframe);
-    create_image('images/paper.png','paper_image',1,mainframe);
-    create_image('images/scissors.png','scissors_image',2,mainframe);
+    score_table = document.createElement("table");
+    score_table.classList.add("score_table");
+    score_row = document.createElement("tr");
+    
+    win_col = document.createElement("td");
+    create_div_with_scores("win_div","Wins:","win",win_col);
+    score_row.appendChild(win_col);
 
-    create_div_with_scores("win_div","Wins:","win",mainframe);
-    create_div_with_scores("lost_div","Losts:","lost",mainframe);
-    create_div_with_scores("draw_div","Draws:","draw",mainframe);
+    lost_col = document.createElement("td")
+    create_div_with_scores("lost_div","Losts:","lost",lost_col);
+    score_row.appendChild(lost_col);
+
+    draw_col = document.createElement("td");
+    create_div_with_scores("draw_div","Draws:","draw",draw_col);
+    score_row.appendChild(draw_col);
+
+    score_table.appendChild(score_row);
+    mainframe.appendChild(score_table);
+
+    game_table = document.createElement("table");
+    game_table.classList.add("game_table");
+    game_row = document.createElement("tr");
+
+    rock_col = document.createElement("td");
+    create_image('images/rock.png','rock_image',0,rock_col);
+    game_row.appendChild(rock_col);
+
+    paper_col = document.createElement("td");
+    create_image('images/paper.png','paper_image',1,paper_col);
+    game_row.appendChild(paper_col);
+
+    scissors_col = document.createElement("td")
+    create_image('images/scissors.png','scissors_image',2,scissors_col);
+    game_row.appendChild(scissors_col);
+
+    game_table.appendChild(game_row)
+    mainframe.appendChild(game_table)
 
     create_btn("Reset","reset",reset,mainframe);
 
@@ -175,4 +222,3 @@ function main(){
 window.addEventListener('DOMContentLoaded',() => {
     main()
 })
-
